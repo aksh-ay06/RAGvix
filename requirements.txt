@@ -1,0 +1,16 @@
+# Requirements mirror from pyproject.toml - helpful for Colab/other environments
+arxiv
+requests
+pymupdf
+sentence-transformers
+faiss-cpu
+pydantic
+tiktoken
+typer
+rich
+python-dotenv
+
+# Development dependencies
+pytest
+ruff
+mypy

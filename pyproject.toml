@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ragvix"
+version = "0.1.0"
+description = "A tiny end-to-end RAG over arXiv"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "RAGvix Team"}]
+requires-python = ">=3.10"
+dependencies = [
+    "arxiv",
+    "requests",
+    "pymupdf",
+    "sentence-transformers",
+    "faiss-cpu",
+    "pydantic",
+    "tiktoken",
+    "typer",
+    "rich",
+    "python-dotenv",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+    "mypy",
+]
+
+[project.scripts]
+ragvix-ingest = "ragvix.ingest.arxiv_client:app"
+ragvix-build-index = "ragvix.index.faiss_store:app"
+ragvix-query = "ragvix.retriever.retriever:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
